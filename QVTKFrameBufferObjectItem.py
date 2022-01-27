@@ -24,6 +24,7 @@ class FboItem(QQuickFramebufferObject):
         self.setMirrorVertically(True)  # QtQuick and OpenGL have opposite Y-Axis directions
         self.setAcceptedMouseButtons(Qt.RightButton | Qt.LeftButton)
 
+    # Override
     def createRenderer(self):
         logging.debug('FboItem::createRenderer')
         self.setVtkFboRenderer(FboRenderer())

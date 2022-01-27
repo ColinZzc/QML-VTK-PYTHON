@@ -70,7 +70,8 @@ if __name__ == '__main__':
     ctxt = engine.rootContext()  # returns QQmlContext
     ctxt.setContextProperty('canvasHandler', handler)
 
-    engine.load(QUrl.fromLocalFile('main.qml'))
+    # engine.load(QUrl.fromLocalFile('main.qml'))
+    engine.load(QUrl.fromLocalFile('./Demo/rect.qml'))
 
     # app.setup(engine)
     rootObject = engine.rootObjects()[0]

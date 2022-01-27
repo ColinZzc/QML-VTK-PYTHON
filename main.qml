@@ -13,8 +13,8 @@ ApplicationWindow {
     visible: true
     title: "QtVTK-Py"
 
-    Material.primary: Material.Indigo
-    Material.accent: Material.LightBlue
+    //Material.primary: Material.Indigo
+    //Material.accent: Material.LightBlue
 
     Rectangle {
         id: screenCanvasUI

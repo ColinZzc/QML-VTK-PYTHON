@@ -103,8 +103,11 @@ class RendererHelper(QObject):
 
         if self.__m_firstRender:
             self.renderWindow.SetOffScreenRendering(True)
+
+            # TODO 背景 SceneHelpers.py 可有可无
             sceneHelper = SceneHelper(self.renderer)
             sceneHelper.initScene()
+
             self.resetCamera()
             self.__m_firstRender = False
 
