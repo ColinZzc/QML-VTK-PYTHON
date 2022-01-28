@@ -5,6 +5,7 @@ from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QUrl, Slot, QObject, qDebug
 from QVTKFrameBufferObjectItem import FboItem
 import vtk  # REQUIRES VTK < 9.0!!!
+from PySide2.QtGui import QGuiApplication
 
 
 class canvasHandler(QObject):
@@ -59,7 +60,8 @@ class canvasHandler(QObject):
 
 if __name__ == '__main__':
 
-    app = QApplication()
+    # app = QApplication()
+    app = QGuiApplication()
     app.setApplicationName('vtkMolecule_QML')
     qmlRegisterType(FboItem, 'QtVTK', 1, 0, 'VtkFboItem')
 
@@ -70,15 +72,13 @@ if __name__ == '__main__':
     ctxt = engine.rootContext()  # returns QQmlContext
     ctxt.setContextProperty('canvasHandler', handler)
 
-    # engine.load(QUrl.fromLocalFile('main.qml'))
-    engine.load(QUrl.fromLocalFile('./Demo/rect.qml'))
+    engine.load(QUrl.fromLocalFile('main.qml'))
 
     # app.setup(engine)
     rootObject = engine.rootObjects()[0]
     vtkFboItem = rootObject.findChild(FboItem, 'vtkFboItem')
 
     handler.fbo = vtkFboItem
-
 
     rc = app.exec_()
     qDebug(f'CanvasHandler: Execution finished with return code: {rc}')

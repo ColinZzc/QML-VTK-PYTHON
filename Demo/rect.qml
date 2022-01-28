@@ -1,12 +1,10 @@
-import QtQuick.Timeline 1.0
-
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.2
 import QtQuick.Window 2.12
-import QtQuick.Controls.Material 2.12
 import QtCharts 2.3
 import QtVTK 1.0
+
 
 ApplicationWindow {
     id: applicationwindow
@@ -144,7 +142,6 @@ ApplicationWindow {
         Slider {
             id: slider
             objectName: "slider"
-            opacity: 0
             anchors.fill: parent
             value: 0
             stepSize: 1
@@ -152,26 +149,6 @@ ApplicationWindow {
         }
     }
 
-    Timeline {
-        id: timeline
-        currentFrame: slider.value
-        KeyframeGroup {
-            target: handle
-            property: "x"
-            Keyframe {
-                value: 444
-                frame: 180
-            }
-
-            Keyframe {
-                value: 0
-                frame: 0
-            }
-        }
-        endFrame: 180
-        enabled: true
-        startFrame: 0
-    }
 }
 
 /*##^##

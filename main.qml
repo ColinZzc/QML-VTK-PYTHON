@@ -1,20 +1,17 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtQuick.Dialogs 1.2
 import QtQuick.Window 2.12
-import QtQuick.Controls.Material 2.12
 import QtCharts 2.3
 import QtVTK 1.0
 
-ApplicationWindow {
+Window {
     id: root
     minimumWidth: 1024
     minimumHeight: 700
     visible: true
+    color: "#00ffffff"
     title: "QtVTK-Py"
 
-    //Material.primary: Material.Indigo
-    //Material.accent: Material.LightBlue
 
     Rectangle {
         id: screenCanvasUI
@@ -67,6 +64,34 @@ ApplicationWindow {
             ToolTip.text: "Show 2D Chart in right corner"
         }
 
+        Rectangle {
+                id: rectangle
+                objectName: "rectangle"
+
+                width: 71
+                height: 27
+                color: "lightgrey"
+                border.color: "grey"
+                anchors.right: comboBox.left
+                anchors.bottom: parent.bottom
+                anchors.rightMargin: 50
+                anchors.bottomMargin: 50
+
+                TextInput {
+                    id: textEdit
+                    objectName: "angleText"
+                    validator: IntValidator {
+                        bottom: 0
+                        top: 360
+                    }
+                    maximumLength: 3
+                    text: qsTr("0")
+                    anchors.fill: parent
+                    horizontalAlignment: Text.AlignRight
+                    verticalAlignment: Text.AlignVCenter
+                }
+            }
+
         Button {
             id: createScene
             text: "Create Lattice"
@@ -80,5 +105,22 @@ ApplicationWindow {
             ToolTip.delay: 1000
             ToolTip.text: "Open a 3D model into the canvas"
         }
+
+        ComboBox {
+            id: comboBox
+            x: 265
+            y: 410
+            anchors.right: createScene.left
+            anchors.bottom: parent.bottom
+            anchors.margins: 50
+            model: ["X Axis", 'Y Axis', 'Z Axis']
+            currentIndex: 1
+        }
+
     }
 }
+/*##^##
+Designer {
+    D{i:0;autoSize:true;height:480;width:640}D{i:2}D{i:4}D{i:6}D{i:5}D{i:8}D{i:9}D{i:1}
+}
+##^##*/
