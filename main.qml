@@ -3,6 +3,7 @@ import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
 import QtCharts 2.3
 import QtVTK 1.0
+import QtQuick.Timeline 1.0
 
 Window {
     id: root
@@ -117,10 +118,78 @@ Window {
             currentIndex: 1
         }
 
+        Item {
+            id: sliderContainer
+
+            width: 474
+            height: 31
+            anchors.right: parent.right
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 100
+            anchors.rightMargin: 50
+            Image {
+                id: sliderContainerAsset
+                source: "Demo/assets/sliderContainer.png"
+            }
+
+            Image {
+                id: groove
+                y: 0
+                anchors.left: parent.left
+                anchors.right: parent.right
+                source: "Demo/assets/groove.png"
+                anchors.leftMargin: 0
+                anchors.rightMargin: 0
+            }
+
+            Image {
+                id: handle
+                x: 444
+                y: 1
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.bottom: parent.bottom
+                source: "Demo/assets/handle.png"
+                anchors.verticalCenterOffset: 0
+                anchors.bottomMargin: 0
+            }
+
+            Slider {
+                id: slider
+                objectName: "slider"
+                opacity: 0
+                anchors.fill: parent
+                value: 0
+                stepSize: 1
+                to: 180
+            }
+        }
+
+        Timeline {
+            id: timeline
+            currentFrame: slider.value
+            KeyframeGroup {
+                target: handle
+                property: "x"
+                Keyframe {
+                    value: 444
+                    frame: 180
+                }
+
+                Keyframe {
+                    value: 0
+                    frame: 0
+                }
+            }
+            endFrame: 180
+            enabled: true
+            startFrame: 0
+        }
+
     }
 }
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}D{i:2}D{i:4}D{i:6}D{i:5}D{i:8}D{i:9}D{i:1}
+    D{i:0;autoSize:true;formeditorZoom:0.9;height:480;width:640}D{i:2}D{i:4}D{i:6}D{i:5}
+D{i:8}D{i:9}D{i:11}D{i:12}D{i:13}D{i:14}D{i:10}D{i:1}
 }
 ##^##*/
