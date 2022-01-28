@@ -36,7 +36,6 @@ class FboItem(QQuickFramebufferObject):
         self.__m_vtkFboRenderer = renderer
         self.__m_vtkFboRenderer.renderer.setVtkFboItem(self)
 
-
     def isInitialized(self) -> bool:
         return (self.__m_vtkFboRenderer != None)
 
