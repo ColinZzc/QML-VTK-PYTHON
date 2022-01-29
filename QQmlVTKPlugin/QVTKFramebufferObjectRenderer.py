@@ -7,7 +7,7 @@ from PySide2.QtQuick import QQuickFramebufferObject
 
 import vtk
 
-from SceneHelpers import SceneHelper
+from .SceneHelpers import SceneHelper
 
 
 class FboRenderer(QQuickFramebufferObject.Renderer):

@@ -2,7 +2,7 @@ from PySide2.QtCore import QObject, QUrl, qDebug, qCritical, QEvent, QPointF, Qt
 from PySide2.QtGui import QColor, QMouseEvent, QWheelEvent
 from PySide2.QtQuick import QQuickFramebufferObject
 
-from QVTKFramebufferObjectRenderer import FboRenderer
+from .QVTKFramebufferObjectRenderer import FboRenderer
 import logging
 
 

@@ -1,10 +1,21 @@
+import os.path
 import sys
 
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
 from PySide2.QtWidgets import QApplication
-from PySide2.QtCore import QUrl, Slot, QObject, qDebug
-from QVTKFrameBufferObjectItem import FboItem
+from PySide2.QtCore import QUrl, Slot, QObject
+from QQmlVTKPlugin.QVTKFrameBufferObjectItem import FboItem
 import vtk  # REQUIRES VTK < 9.0!!!
+
+# 获取exe之后运行时解压的资源文件目录
+import os, sys
+def base_path(path):
+  if getattr(sys, 'frozen', None):
+    basedir = sys._MEIPASS
+  else:
+    basedir = os.path.dirname(__file__)
+  return os.path.join(basedir, path)
+
 
 if __name__ == '__main__':
 
@@ -14,7 +25,13 @@ if __name__ == '__main__':
     qmlRegisterType(FboItem, 'QtVTK', 1, 0, 'VtkFboItem')
     # 载入QML文件
     engine = QQmlApplicationEngine()
-    engine.load(QUrl.fromLocalFile('Demo/rect.qml'))
+
+    # 将整个应用程序工作路径设置成exe运行时解压资源的文件路径
+    os.chdir(base_path(''))
+    engine.load('Demo/rect.qml')
+    # 或者 只在这里 指向解压资源的文件夹
+    # engine.load(base_path('Demo/rect.qml'))
+
     # 获取qml中的组件
     rootObject = engine.rootObjects()[0]
     vtkFboItem = rootObject.findChild(FboItem, 'vtkFboItem')
@@ -92,5 +109,6 @@ if __name__ == '__main__':
 
 
     cleanBtn.clicked.connect(receive_clean_scene_button_clicked)
+    app.exec_()
 
-    sys.exit(app.exec_())
+    sys.exit()

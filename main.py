@@ -1,9 +1,8 @@
 import sys
 
 from PySide2.QtQml import QQmlApplicationEngine, qmlRegisterType
-from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import QUrl, Slot, QObject, qDebug
-from QVTKFrameBufferObjectItem import FboItem
+from QQmlVTKPlugin.QVTKFrameBufferObjectItem import FboItem
 import vtk  # REQUIRES VTK < 9.0!!!
 from PySide2.QtGui import QGuiApplication
 
